@@ -1,73 +1,84 @@
-import TableBase from '@/components/Table';
-import { type IColumn } from '@/components/Table/typing';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Button, Popconfirm, Tooltip } from 'antd';
-import moment from 'moment';
-import { useModel } from 'umi';
-import Form from './components/Form';
+import { useState } from 'react';
+import { Table, Button, Input, Popconfirm, message, Space } from 'antd';
 
-const ChucVuPage = () => {
-  const { getModel, page, limit, deleteModel, handleEdit } = useModel('danhmuc.chucvu');
+const { Search } = Input;
 
-  const columns: IColumn<ChucVu.IRecord>[] = [
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+const ProductPage = () => {
+  const [products, setProducts] = useState<Product[]>([
+    { id: 1, name: 'Laptop Dell XPS 13', price: 25000000, quantity: 10 },
+    { id: 2, name: 'iPhone 15 Pro Max', price: 30000000, quantity: 15 },
+    { id: 3, name: 'Samsung Galaxy S24', price: 22000000, quantity: 20 },
+    { id: 4, name: 'iPad Air M2', price: 18000000, quantity: 12 },
+    { id: 5, name: 'MacBook Air M3', price: 28000000, quantity: 8 },
+  ]);
+
+  const [searchText, setSearchText] = useState('');
+
+  const handleDelete = (id: number) => {
+    setProducts(products.filter(item => item.id !== id));
+    message.success('Xóa sản phẩm thành công');
+  };
+
+  const filteredProducts = products.filter(item =>
+    item.name.toLowerCase().includes(searchText.toLowerCase()),
+  );
+
+  const columns = [
     {
-      title: 'Mã',
-      dataIndex: 'ma',
-      width: 80,
-      filterType: 'select',
-      filterData: ['M01', 'M02', 'M03'],
-      sortable: true,
+      title: 'STT',
+      render: (_: any, __: any, index: number) => index + 1,
     },
     {
-      title: 'Tên chức vụ',
-      dataIndex: 'ten',
-      width: 250,
-      filterType: 'string',
-      sortable: true,
+      title: 'Tên sản phẩm',
+      dataIndex: 'name',
     },
     {
-      title: 'Ngày tạo',
-      dataIndex: 'createdAt',
-      align: 'center',
-      width: 120,
-      filterType: 'datetime',
-      sortable: true,
-      render: (val) => moment(val).format('HH:mm DD/MM/YYYY'),
+      title: 'Giá',
+      dataIndex: 'price',
+      render: (price: number) => price.toLocaleString('vi-VN') + ' ₫',
+    },
+    {
+      title: 'Số lượng',
+      dataIndex: 'quantity',
     },
     {
       title: 'Thao tác',
-      align: 'center',
-      width: 90,
-      fixed: 'right',
-      render: (record: ChucVu.IRecord) => (
-        <>
-          <Tooltip title="Chỉnh sửa">
-            <Button onClick={() => handleEdit(record)} type="link" icon={<EditOutlined />} />
-          </Tooltip>
-          <Tooltip title="Xóa">
-            <Popconfirm
-              onConfirm={() => deleteModel(record._id, getModel)}
-              title="Bạn có chắc chắn muốn xóa chức vụ này?"
-              placement="topLeft"
-            >
-              <Button danger type="link" icon={<DeleteOutlined />} />
-            </Popconfirm>
-          </Tooltip>
-        </>
+      render: (_: any, record: Product) => (
+        <Popconfirm
+          title="Bạn có chắc muốn xóa?"
+          onConfirm={() => handleDelete(record.id)}
+        >
+          <Button danger>Xóa</Button>
+        </Popconfirm>
       ),
     },
   ];
 
   return (
-    <TableBase
-      columns={columns}
-      dependencies={[page, limit]}
-      modelName="danhmuc.chucvu"
-      title="Chức vụ"
-      Form={Form}
-      buttons={{ import: true }}
-    />
+    <div>
+      <Space style={{ marginBottom: 16 }}>
+        <Search
+          placeholder="Tìm theo tên sản phẩm"
+          onChange={(e) => setSearchText(e.target.value)}
+          allowClear
+        />
+        <Button type="primary">Thêm sản phẩm</Button>
+      </Space>
+
+      <Table
+        rowKey="id"
+        columns={columns}
+        dataSource={filteredProducts}
+      />
+    </div>
   );
 };
 
-export default ChucVuPage;
+export default ProductPage;
