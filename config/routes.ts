@@ -72,6 +72,36 @@
   icon: 'BookOutlined',
 },
 {
+  path: '/nhan-vien',
+  name: 'Nhân viên',
+  icon: 'UserOutlined',
+  component: './QuanLyNhanVien/TrangNhanVien'
+},
+{
+  path: '/dich-vu',
+  name: 'Dịch vụ',
+  icon: 'AppstoreOutlined',
+  component: './QuanLyDichVu/TrangDichVu'
+},
+{
+  path: '/lich-hen',
+  name: 'Lịch hẹn',
+  icon: 'CalendarOutlined',
+  component: './QuanLyLichHen/TrangLichHen'
+},
+{
+  path: '/danh-gia',
+  name: 'Đánh giá',
+  icon: 'StarOutlined',
+  component: './QuanLyDanhGia/TrangDanhGia'
+},
+{
+  path: '/thong-ke',
+  name: 'Thống kê',
+  icon: 'BarChartOutlined',
+  component: './BaoCaoThongKe/TrangThongKe'
+},
+{
     path: '/notification',
     routes: [
       {
