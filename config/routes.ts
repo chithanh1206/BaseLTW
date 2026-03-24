@@ -101,6 +101,38 @@
   icon: 'BarChartOutlined',
   component: './BaoCaoThongKe/TrangThongKe'
 },
+
+  {
+    path: '/',
+    redirect: '/sovanbang',
+  },
+
+  {
+    path: '/sovanbang',
+    name: 'SoVanBang',
+    component: '@/pages/SoVanBang',
+  },
+  {
+    path: '/quyetdinh',
+    name: 'QuyetDinh',
+    component: '@/pages/QuyetDinh',
+  },
+  {
+    path: '/cauhinh',
+    name: 'CauHinh',
+    component: '@/pages/CauHinh',
+  },
+  {
+    path: '/vanbang',
+    name: 'VanBang',
+    component: '@/pages/VanBang',
+  },
+  {
+    path: '/tracuu',
+    name: 'TraCuu',
+    component: '@/pages/TraCuu',
+  },
+
 {
     path: '/notification',
     routes: [
