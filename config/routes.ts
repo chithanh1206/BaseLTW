@@ -132,7 +132,22 @@
     name: 'TraCuu',
     component: '@/pages/TraCuu',
   },
-
+{
+  path: "/clb",
+  component: "./CauLacBo",
+},
+{
+  path: "/don",
+  component: "./DonDangKy",
+},
+{
+  path: "/thanh-vien",
+  component: "./ThanhVien",
+},
+{
+  path: "/bao-cao",
+  component: "./BaoCaoThongKe",
+},
 {
     path: '/notification',
     routes: [

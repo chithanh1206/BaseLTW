@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Table, Button, Modal, Input, message } from "antd";
 import { getData, setData } from "@/utils/storage";
 
-export default function QuyetDinh() {
+export default function DonDangKy() {
   const [data, setList] = useState(getData("don"));
   const clb = getData("clb");
 
@@ -20,7 +20,7 @@ export default function QuyetDinh() {
           ghiChu: status === "Rejected" ? reason : "",
           history: [
             ...(i.history || []),
-            `Admin ${status} lúc ${new Date().toLocaleString()}`
+            `${status} - ${new Date().toLocaleString()}`
           ],
         };
       }
@@ -36,11 +36,11 @@ export default function QuyetDinh() {
 
   return (
     <>
-      <Button type="primary" onClick={() => updateStatus("Approved")}>
+      <Button onClick={() => updateStatus("Approved")}>
         Duyệt ({selectedRowKeys.length})
       </Button>
 
-      <Button danger style={{ marginLeft: 8 }} onClick={() => setOpenReject(true)}>
+      <Button danger onClick={() => setOpenReject(true)}>
         Từ chối ({selectedRowKeys.length})
       </Button>
 
@@ -63,10 +63,6 @@ export default function QuyetDinh() {
             },
           },
           { title: "Trạng thái", dataIndex: "trangThai" },
-          {
-            title: "Ghi chú",
-            dataIndex: "ghiChu",
-          },
           {
             title: "Lịch sử",
             render: (_: any, r: any) => (
@@ -94,7 +90,7 @@ export default function QuyetDinh() {
       <Modal
         visible={openReject}
         onOk={() => {
-          if (!reason) return message.error("Nhập lý do từ chối");
+          if (!reason) return message.error("Nhập lý do");
           updateStatus("Rejected");
         }}
         onCancel={() => setOpenReject(false)}
