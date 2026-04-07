@@ -170,11 +170,6 @@
     layout: false,
     hideInMenu: true,
   },
-
-  {
-    path: '/',
-  },
-
   {
     path: '/403',
     component: './exception/403/403Page',
@@ -186,8 +181,27 @@
     component: './exception/DangCapNhat',
     layout: false,
   },
-
-  {
-    component: './exception/404',
-  },
+{
+  path: '/travel/home',
+  name: 'Travel Home',
+  component: '@/pages/Travel/Home',
+},
+{
+  path: '/travel/planner',
+  name: 'Planner',
+  component: '@/pages/Travel/Planner',
+},
+{
+  path: '/travel/budget',
+  name: 'Budget',
+  component: '@/pages/Travel/Budget',
+},
+{
+  path: '/travel/admin',
+  name: 'Admin',
+  component: '@/pages/Travel/Admin',
+},
+{
+  component: './exception/404',
+}
 ];
