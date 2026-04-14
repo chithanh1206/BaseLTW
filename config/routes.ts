@@ -145,9 +145,9 @@
   component: "./ThanhVien",
 },
 {
-  path: "/bao-cao",
-  component: "./BaoCaoThongKe",
-},
+  path: '/bao-cao',
+  component: './BaoCaoThongKe/TrangThongKe',
+}, 
 {
     path: '/notification',
     routes: [
@@ -200,6 +200,12 @@
   path: '/travel/admin',
   name: 'Admin',
   component: '@/pages/Travel/Admin',
+},
+{
+  path: '/khoahoc',
+  name: 'KhoaHoc',
+  icon: 'BookOutlined',
+  component: './KhoaHoc',
 },
 {
   component: './exception/404',
