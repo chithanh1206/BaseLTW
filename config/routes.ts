@@ -208,6 +208,30 @@
   component: './KhoaHoc',
 },
 {
+  path: '/blog',
+  name: 'Blog',
+  component: './Blog',
+},
+{
+  path: '/blog/:slug',
+  component: './Blog/Detail',
+},
+{
+  path: '/about',
+  name: 'Giới thiệu',
+  component: './Blog/About',
+},
+{
+  path: '/quan-ly-bai-viet',
+  name: 'Quản lý bài viết',
+  component: './Blog/QuanLyBaiViet',
+},
+{
+  path: '/quan-ly-tag',
+  name: 'Quản lý tag',
+  component: './Blog/QuanLyTag',
+},
+{
   component: './exception/404',
 }
 ];
