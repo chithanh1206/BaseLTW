@@ -257,6 +257,11 @@
   component: './ExerciseLibrary',
 },
 {
+  path: '/quan-ly-task',
+  name: 'Quản lý Task',
+  component: './QuanLyTask',
+},
+{
   component: './exception/404',
 }
 ];
